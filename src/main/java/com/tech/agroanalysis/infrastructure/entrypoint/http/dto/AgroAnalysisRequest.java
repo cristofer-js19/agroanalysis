@@ -1,4 +1,4 @@
-package com.tech.agroanalysis.infrastructure.entrypoint.dto;
+package com.tech.agroanalysis.infrastructure.entrypoint.http.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

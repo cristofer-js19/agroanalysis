@@ -1,7 +1,7 @@
 package com.tech.agroanalysis.infrastructure.gateway.timeseries.mapper;
 
+import com.tech.agroanalysis.application.dto.AgroAnalysisInput;
 import com.tech.agroanalysis.domain.model.TimeSeriesProfile;
-import com.tech.agroanalysis.infrastructure.entrypoint.dto.AgroAnalysisRequest;
 import com.tech.agroanalysis.infrastructure.gateway.timeseries.dto.TimeSeriesRequest;
 import com.tech.agroanalysis.infrastructure.gateway.timeseries.dto.TimeSeriesResponse;
 
@@ -13,14 +13,14 @@ public class TimeSeriesMapper {
                 .build();
     }
 
-    public static TimeSeriesRequest toApiRequest(AgroAnalysisRequest request) {
+    public static TimeSeriesRequest toApiRequest(AgroAnalysisInput input) {
         return TimeSeriesRequest.builder()
                 .profileType("ndvi")
                 .satellite("comb")
                 .preFilter(3)
                 .filter("sav")
                 .filterParam(4)
-                .polygon(request.polygon())
+                .polygon(input.polygon())
                 .build();
     }
 }
