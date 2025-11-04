@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/analysis") //TODO: Review
+@RequestMapping("/api/v1/analysis")
 @RequiredArgsConstructor
 public class AgroAnalysisController {
+
     private final GenerativeAiAnalysisUseCase generativeAiAnalysisUseCase;
 
     @PostMapping

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: agroanalysis
+
+http:
+  satveg:
+    base-url: "https://api.cnptia.embrapa.br"
+    host: "/satveg/v2/series" #TODO: Check attribute name
+    api-key: ${SATVEG_API_KEY}
+  openmeteo:
+    base-url: "https://api.open-meteo.com" #TODO: Check attribute name
+    host: "/v1/forecast"
+
+ai:
+  llm:
+    url: "https://api.groq.com/openai/v1"
+    model: "openai/gpt-oss-20b"
+    api-key: ${LLM_API_KEY}

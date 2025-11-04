@@ -8,9 +8,10 @@ import com.tech.agroanalysis.infrastructure.entrypoint.http.dto.AgroAnalysisResp
 public class AgroAnalysisMapper {
     public static AgroAnalysisInput toUseCaseInput(AgroAnalysisRequest request) {
         return AgroAnalysisInput.builder()
-                .polygon(request.polygon())
                 .latitude(request.latitude())
                 .longitude(request.longitude())
+                .username(request.username())
+                .plantType(request.plantType())
                 .build();
     }
 

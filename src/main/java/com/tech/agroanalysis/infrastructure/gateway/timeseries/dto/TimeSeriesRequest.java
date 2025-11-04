@@ -10,5 +10,6 @@ public record TimeSeriesRequest(
         @JsonProperty("preFiltro") Integer preFilter,
         @JsonProperty("filtro") String filter,
         @JsonProperty("parametroFiltro") Integer filterParam,
-        @JsonProperty("poligono") String polygon
+        Double latitude,
+        Double longitude
 ) {}

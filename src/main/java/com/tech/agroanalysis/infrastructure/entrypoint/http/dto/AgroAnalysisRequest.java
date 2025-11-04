@@ -5,7 +5,8 @@ import lombok.Builder;
 
 @Builder
 public record AgroAnalysisRequest(
-        @JsonProperty("poligono") String polygon,
         String latitude,
-        String longitude
+        String longitude,
+        String username,
+        @JsonProperty("plan_type") String plantType
 ) {}

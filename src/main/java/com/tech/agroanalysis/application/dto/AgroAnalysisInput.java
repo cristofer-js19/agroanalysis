@@ -4,7 +4,8 @@ import lombok.Builder;
 
 @Builder
 public record AgroAnalysisInput(
-        String polygon,
         String latitude,
-        String longitude
+        String longitude,
+        String username,
+        String plantType
 ) {}

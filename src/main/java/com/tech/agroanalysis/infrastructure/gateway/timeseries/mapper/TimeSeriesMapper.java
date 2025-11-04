@@ -20,7 +20,8 @@ public class TimeSeriesMapper {
                 .preFilter(3)
                 .filter("sav")
                 .filterParam(4)
-                .polygon(input.polygon())
+                .latitude(Double.parseDouble(input.latitude()))
+                .longitude(Double.parseDouble(input.longitude()))
                 .build();
     }
 }
