@@ -4,5 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record GenerativeAiAnalysis(
-        String generatedText
+        String soilAnalysis,
+        String weatherAnalysis,
+        String signature
 ) {}

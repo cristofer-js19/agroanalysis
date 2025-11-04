@@ -9,11 +9,11 @@ import java.util.List;
 public record WeatherForecastResponse(
         String latitude,
         String longitude,
-        @JsonProperty("generationtime_ms") String generationTime, //TODO: Check
+        @JsonProperty("generationtime_ms") String generationTime,
         @JsonProperty("utc_offset_seconds") Integer utcOffset,
         String timezone,
         @JsonProperty("timezone_abbreviation") String timezoneAbbreviation,
-        Integer elevation,
+        Double elevation,
         @JsonProperty("hourly_units") WeatherForecastHourlyUnitsResponse hourlyUnits,
         WeatherForecastHourlyResponse hourly
 ) {
@@ -26,7 +26,6 @@ public record WeatherForecastResponse(
     public record WeatherForecastHourlyResponse(
             @JsonProperty("time") List<String> timeHistoryList,
             @JsonProperty("temperature_2m") List<Double> temperatureHistoryList,
-            @JsonProperty("precipitation_probability") List<Integer> precipitationProbabilityList,
-            @JsonProperty("rain") List<Double> rainfallMilimeterList
+            @JsonProperty("precipitation_probability") List<Integer> precipitationProbabilityList
     ) {}
 }

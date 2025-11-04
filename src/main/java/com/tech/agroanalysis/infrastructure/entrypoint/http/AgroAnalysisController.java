@@ -21,7 +21,7 @@ public class AgroAnalysisController {
     private final GenerativeAiAnalysisUseCase generativeAiAnalysisUseCase;
 
     @PostMapping
-    public ResponseEntity<AgroAnalysisResponse> performAnalysis(@RequestBody AgroAnalysisRequest request) {
+    public ResponseEntity<AgroAnalysisResponse> performAnalysis(@RequestBody AgroAnalysisRequest request) throws Exception {
         AgroAnalysisInput input = AgroAnalysisMapper.toUseCaseInput(request);
         AgroAnalysisOutput output = generativeAiAnalysisUseCase.execute(input);
         AgroAnalysisResponse response = AgroAnalysisMapper.toApiResponse(output);

@@ -3,8 +3,15 @@ package com.tech.agroanalysis.infrastructure.gateway.ai;
 import com.openai.client.OpenAIClient;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
+import com.tech.agroanalysis.application.dto.AgroAnalysisInput;
 import com.tech.agroanalysis.application.port.out.GenerativeAiDataPort;
+import com.tech.agroanalysis.domain.model.GenerativeAiAnalysis;
+import com.tech.agroanalysis.domain.model.TimeSeriesProfile;
+import com.tech.agroanalysis.domain.model.WeatherForecastProfile;
+import com.tech.agroanalysis.infrastructure.gateway.ai.mapper.GenerativeAiMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,14 +20,19 @@ public class GenerativeAiAdapter implements GenerativeAiDataPort {
 
     private final OpenAIClient aiClient;
 
+    @Value("${ai.llm.model}")
+    private String llmModel;
+
+    @Cacheable("aiAnalysis")
     @Override
-    public String generateAnalysis() {
+    public GenerativeAiAnalysis generateAnalysis(AgroAnalysisInput input, TimeSeriesProfile timeSeriesProfile,
+                                                 WeatherForecastProfile weatherForecastProfile) throws Exception {
         ResponseCreateParams params = ResponseCreateParams.builder()
-                .input("Qual é o nome da capital do estado do Pará no Brasil?")
-                .model("openai/gpt-oss-20b")
+                .input(GenerativeAiMapper.toPromptFormat(input, timeSeriesProfile, weatherForecastProfile))
+                .model(llmModel)
                 .build();
 
         Response response = aiClient.responses().create(params);
-        return response.output().getLast().message().get().content().getFirst().asOutputText().text();
+        return GenerativeAiMapper.toDomain(response);
     }
 }

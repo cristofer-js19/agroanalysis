@@ -10,6 +10,5 @@ public interface WeatherForecastFeignClient {
     @GetMapping("${http.openmeteo.host}")
     WeatherForecastResponse getWeatherForecast(@RequestParam("latitude") double latitude,
                                                @RequestParam("longitude") double longitude,
-                                               @RequestParam("hourly") String hourly,
-                                               @RequestParam("past_days") Integer past_days);
+                                               @RequestParam("hourly") String hourly);
 }

@@ -8,5 +8,5 @@ public record AgroAnalysisRequest(
         String latitude,
         String longitude,
         String username,
-        @JsonProperty("plan_type") String plantType
+        @JsonProperty("plant_type") String plantType
 ) {}

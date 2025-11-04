@@ -6,8 +6,20 @@ import com.tech.agroanalysis.infrastructure.gateway.timeseries.dto.TimeSeriesReq
 import com.tech.agroanalysis.infrastructure.gateway.timeseries.dto.TimeSeriesResponse;
 
 public class TimeSeriesMapper {
-    public static TimeSeriesProfile toDomain(TimeSeriesResponse response) {
+
+    private static final String PROFILE_TYPE = "ndvi";
+    private static final String SATELLITE = "comb";
+    private static final Integer PRE_FILTER = 3;
+    private static final String FILTER = "sav";
+    private static final Integer FILTER_PARAM = 4;
+
+    public static TimeSeriesProfile toDomain(AgroAnalysisInput input, TimeSeriesResponse response) {
         return TimeSeriesProfile.builder()
+                .profileType(PROFILE_TYPE)
+                .satellite(SATELLITE)
+                .preFilter(PRE_FILTER)
+                .filter(FILTER)
+                .filterParam(FILTER_PARAM)
                 .timeSeriesList(response.timeSeriesList())
                 .dateList(response.dateList())
                 .build();
@@ -15,11 +27,11 @@ public class TimeSeriesMapper {
 
     public static TimeSeriesRequest toApiRequest(AgroAnalysisInput input) {
         return TimeSeriesRequest.builder()
-                .profileType("ndvi")
-                .satellite("comb")
-                .preFilter(3)
-                .filter("sav")
-                .filterParam(4)
+                .profileType(PROFILE_TYPE)
+                .satellite(SATELLITE)
+                .preFilter(PRE_FILTER)
+                .filter(FILTER)
+                .filterParam(FILTER_PARAM)
                 .latitude(Double.parseDouble(input.latitude()))
                 .longitude(Double.parseDouble(input.longitude()))
                 .build();

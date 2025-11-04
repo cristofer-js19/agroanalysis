@@ -4,5 +4,5 @@ import com.tech.agroanalysis.application.dto.AgroAnalysisInput;
 import com.tech.agroanalysis.application.dto.AgroAnalysisOutput;
 
 public interface GenerativeAiAnalysisUseCase {
-    AgroAnalysisOutput execute(AgroAnalysisInput input);
+    AgroAnalysisOutput execute(AgroAnalysisInput input) throws Exception;
 }

@@ -4,5 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record AgroAnalysisOutput(
-        String analysisResult
+        String soilAnalysis,
+        String weatherAnalysis,
+        String signature
 ) {}

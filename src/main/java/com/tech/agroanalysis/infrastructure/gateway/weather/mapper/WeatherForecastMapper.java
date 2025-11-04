@@ -6,10 +6,22 @@ import com.tech.agroanalysis.infrastructure.gateway.weather.dto.WeatherForecastR
 public class WeatherForecastMapper {
     public static WeatherForecastProfile toDomain(WeatherForecastResponse response) {
         return WeatherForecastProfile.builder()
-                .timeHistoryList(response.hourly().timeHistoryList())
-                .temperatureHistoryList(response.hourly().temperatureHistoryList())
-                .precipitationProbabilityHistoryList(response.hourly().precipitationProbabilityList())
-                .rainfallMilimetersHistoryList(response.hourly().rainfallMilimeterList())
+                .generationTime(response.generationTime())
+                .utcOffset(response.utcOffset())
+                .timezone(response.timezone())
+                .timezoneAbbreviation(response.timezoneAbbreviation())
+                .elevation(response.elevation())
+                .hourlyUnits(WeatherForecastProfile.WeatherForecastHourlyUnitsProfile.builder()
+                        .time(response.hourlyUnits().time())
+                        .temperature(response.hourlyUnits().temperature())
+                        .precipitationProbability(response.hourlyUnits().precipitationProbability())
+                        .rainfallMeasurement(response.hourlyUnits().rainfallMeasurement())
+                        .build())
+                .hourly(WeatherForecastProfile.WeatherForecastHourlyProfile.builder()
+                        .timeHistoryList(response.hourly().timeHistoryList())
+                        .temperatureHistoryList(response.hourly().temperatureHistoryList())
+                        .precipitationProbabilityHistoryList(response.hourly().precipitationProbabilityList())
+                        .build())
                 .build();
     }
 }
