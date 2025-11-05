@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "weatherForecastClient", url = "${http.openmeteo.base-url}")
 public interface WeatherForecastFeignClient {
-    @GetMapping("${http.openmeteo.host}")
+    @GetMapping("${http.openmeteo.uri}")
     WeatherForecastResponse getWeatherForecast(@RequestParam("latitude") double latitude,
                                                @RequestParam("longitude") double longitude,
                                                @RequestParam("hourly") String hourly);

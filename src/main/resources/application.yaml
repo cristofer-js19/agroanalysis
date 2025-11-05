@@ -4,12 +4,12 @@ spring:
 
 http:
   satveg:
-    base-url: "https://api.cnptia.embrapa.br"
-    host: "/satveg/v2/series" #TODO: Check attribute name
+    base-url: "https://api.cnptia.embrapa.br/satveg/v2"
+    uri: "/series"
     api-key: ${SATVEG_API_KEY}
   openmeteo:
-    base-url: "https://api.open-meteo.com" #TODO: Check attribute name
-    host: "/v1/forecast"
+    base-url: "https://api.open-meteo.com/v1"
+    uri: "/forecast"
 
 ai:
   llm:

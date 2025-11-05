@@ -1,7 +1,6 @@
 package com.tech.agroanalysis.infrastructure.gateway.ai;
 
 import com.openai.client.OpenAIClient;
-import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 import com.tech.agroanalysis.application.dto.AgroAnalysisInput;
 import com.tech.agroanalysis.application.port.out.GenerativeAiDataPort;
@@ -27,12 +26,11 @@ public class GenerativeAiAdapter implements GenerativeAiDataPort {
     @Override
     public GenerativeAiAnalysis generateAnalysis(AgroAnalysisInput input, TimeSeriesProfile timeSeriesProfile,
                                                  WeatherForecastProfile weatherForecastProfile) throws Exception {
-        ResponseCreateParams params = ResponseCreateParams.builder()
+        var params = ResponseCreateParams.builder()
                 .input(GenerativeAiMapper.toPromptFormat(input, timeSeriesProfile, weatherForecastProfile))
                 .model(llmModel)
                 .build();
 
-        Response response = aiClient.responses().create(params);
-        return GenerativeAiMapper.toDomain(input, response);
+        return GenerativeAiMapper.toDomain(input, aiClient.responses().create(params));
     }
 }

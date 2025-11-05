@@ -1,7 +1,5 @@
 package com.tech.agroanalysis.infrastructure.entrypoint.http;
 
-import com.tech.agroanalysis.application.dto.AgroAnalysisInput;
-import com.tech.agroanalysis.application.dto.AgroAnalysisOutput;
 import com.tech.agroanalysis.application.port.in.GenerativeAiAnalysisUseCase;
 import com.tech.agroanalysis.infrastructure.entrypoint.http.dto.AgroAnalysisRequest;
 import com.tech.agroanalysis.infrastructure.entrypoint.http.dto.AgroAnalysisResponse;
@@ -22,9 +20,9 @@ public class AgroAnalysisController {
 
     @PostMapping
     public ResponseEntity<AgroAnalysisResponse> performAnalysis(@RequestBody AgroAnalysisRequest request) throws Exception {
-        AgroAnalysisInput input = AgroAnalysisMapper.toUseCaseInput(request);
-        AgroAnalysisOutput output = generativeAiAnalysisUseCase.execute(input);
-        AgroAnalysisResponse response = AgroAnalysisMapper.toApiResponse(output);
+        var input = AgroAnalysisMapper.toUseCaseInput(request);
+        var output = generativeAiAnalysisUseCase.execute(input);
+        var response = AgroAnalysisMapper.toApiResponse(output);
 
         return ResponseEntity.ok(response);
     }

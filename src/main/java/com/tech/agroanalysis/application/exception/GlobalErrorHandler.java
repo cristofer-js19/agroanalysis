@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalErrorHandler {
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ProblemDetail> handleRuntimeException(RuntimeException e) { //TODO: Check
+    public ResponseEntity<ProblemDetail> handleRuntimeException(RuntimeException e) {
         var status = HttpStatus.BAD_REQUEST;
         var problemDetail = ProblemDetail.forStatusAndDetail(status, e.getMessage());
 
@@ -18,7 +18,7 @@ public class GlobalErrorHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ProblemDetail> handleGenericException(Exception e) { //TODO: Check
+    public ResponseEntity<ProblemDetail> handleGenericException(Exception e) {
         var status = HttpStatus.INTERNAL_SERVER_ERROR;
         var problemDetail = ProblemDetail.forStatusAndDetail(status, e.getMessage());
 

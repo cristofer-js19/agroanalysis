@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "timeSeriesClient", url = "${http.satveg.base-url}",
         configuration = TimeSeriesFeignClientConfig.class)
 public interface TimeSeriesFeignClient {
-    @PostMapping(value = "${http.satveg.host}", consumes = "application/json")
+    @PostMapping(value = "${http.satveg.uri}", consumes = "application/json")
     TimeSeriesResponse querySeries(@RequestBody TimeSeriesRequest request);
 }

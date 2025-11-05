@@ -81,7 +81,7 @@ public class GenerativeAiPromptBuilder {
         if (list == null || list.isEmpty()) {
             return "(sem dados)";
         }
-        StringJoiner joiner = new StringJoiner(", ");
+        var joiner = new StringJoiner(", ");
         list.forEach(item -> joiner.add(String.valueOf(item)));
         return joiner.toString();
     }
