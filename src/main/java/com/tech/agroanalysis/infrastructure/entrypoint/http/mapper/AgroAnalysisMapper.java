@@ -18,16 +18,17 @@ public class AgroAnalysisMapper {
 
     public static AgroAnalysisOutput toUseCaseOutput(GenerativeAiAnalysis analysis) {
         return AgroAnalysisOutput.builder()
-                .soilAnalysis(analysis.soilAnalysis())
+                .plantType(analysis.plantType())
                 .weatherAnalysis(analysis.weatherAnalysis())
-                .signature(analysis.signature())
+                .soilAnalysis(analysis.soilAnalysis())
                 .build();
     }
 
     public static AgroAnalysisResponse toApiResponse(AgroAnalysisOutput output) {
         return AgroAnalysisResponse.builder()
-                .soilAnalysis(output.soilAnalysis())
+                .plantType(output.plantType())
                 .weatherAnalysis(output.weatherAnalysis())
+                .soilAnalysis(output.soilAnalysis())
                 .build();
     }
 }

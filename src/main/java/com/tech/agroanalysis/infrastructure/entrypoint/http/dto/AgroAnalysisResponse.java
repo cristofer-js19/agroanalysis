@@ -5,6 +5,7 @@ import lombok.Builder;
 
 @Builder
 public record AgroAnalysisResponse(
-        @JsonProperty("soil_analysis") String soilAnalysis,
-        @JsonProperty("weather_analysis") String weatherAnalysis
+        @JsonProperty("plant_type") String plantType,
+        @JsonProperty("weather_analysis") String weatherAnalysis,
+        @JsonProperty("soil_analysis") String soilAnalysis
 ) {}

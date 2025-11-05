@@ -19,6 +19,6 @@ public class TimeSeriesAdapter implements TimeSeriesProfileDataPort {
     @Override
     public TimeSeriesProfile getTimeSeriesProfile(AgroAnalysisInput input) {
         TimeSeriesResponse response = timeSeriesClient.querySeries(TimeSeriesMapper.toApiRequest(input));
-        return TimeSeriesMapper.toDomain(input, response);
+        return TimeSeriesMapper.toDomain(response);
     }
 }

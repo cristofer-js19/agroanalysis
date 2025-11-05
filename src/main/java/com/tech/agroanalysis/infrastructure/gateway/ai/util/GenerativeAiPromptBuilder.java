@@ -20,7 +20,7 @@ public class GenerativeAiPromptBuilder {
         String precipitationProbabilityListStr = joinList(weatherForecastProfile.hourly().precipitationProbabilityHistoryList());
 
         return """
-                Você é um especialista em geotecnologia agrícola e análise ambiental. 
+                Você é um especialista em geotecnologia agrícola e análise ambiental.
                 Com base nos dados a seguir, avalie as condições de SOLO e CLIMA para o cultivo informado.
 
                 ### DADOS SATVEG (Índices Vegetativos)
@@ -59,7 +59,7 @@ public class GenerativeAiPromptBuilder {
                 2. Avalie as condições climáticas recentes (temperatura, precipitação, probabilidade de chuva) e como elas influenciam a viabilidade da cultura informada.
                 3. Forneça recomendações práticas, indicando se as condições são favoráveis, neutras ou desfavoráveis à cultura.
                 4. A resposta deve estar dividida em duas partes: uma para análise do SOLO e outra para CLIMA.
-                5. Utilize uma linguagem técnica, mas compreensível, e conclua com uma saudação personalizada ao solicitante.
+                5. A análise será utilizada, em grande parte, por analfabetos funcionais, pessoas com pouca instrução. Dessa forma, forneça uma resposta detalhada, mas adote uma linguagem simples.
 
                 A estrutura da resposta deve seguir exatamente o formato abaixo:
 
@@ -67,8 +67,6 @@ public class GenerativeAiPromptBuilder {
                 [Escreva aqui a análise detalhada do solo, com base nos índices NDVI/EVI e seu comportamento temporal. Mencione vigor vegetal, cobertura, indícios de degradação ou potencial produtivo do solo.]
                 ===ANALISE_CLIMA===
                 [Escreva aqui a análise detalhada do clima, considerando temperatura, precipitação e condições meteorológicas recentes, indicando se são adequadas à cultura informada.]
-                ---
-                Assine de forma cordial mencionando o nome do solicitante: **%s**.
                 """.formatted(
                 timeSeriesProfile.profileType(), input.latitude(), input.longitude(),
                 timeSeriesProfile.satellite(), timeSeriesProfile.preFilter(), timeSeriesProfile.filter(), timeSeriesProfile.filterParam(),
@@ -76,8 +74,7 @@ public class GenerativeAiPromptBuilder {
                 input.latitude(), input.longitude(),
                 weatherForecastProfile.timezone(), weatherForecastProfile.elevation(),
                 timeHistoryListStr, temperatureListStr, precipitationProbabilityListStr,
-                input.plantType(), input.username()
-        );
+                input.plantType());
     }
 
     private static String joinList(List<?> list) {

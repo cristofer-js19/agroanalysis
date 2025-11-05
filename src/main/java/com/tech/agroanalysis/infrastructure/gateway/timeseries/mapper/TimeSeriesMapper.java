@@ -5,6 +5,8 @@ import com.tech.agroanalysis.domain.model.TimeSeriesProfile;
 import com.tech.agroanalysis.infrastructure.gateway.timeseries.dto.TimeSeriesRequest;
 import com.tech.agroanalysis.infrastructure.gateway.timeseries.dto.TimeSeriesResponse;
 
+import static com.tech.agroanalysis.infrastructure.gateway.util.ListUtil.equalizeListDimension;
+
 public class TimeSeriesMapper {
 
     private static final String PROFILE_TYPE = "ndvi";
@@ -13,15 +15,15 @@ public class TimeSeriesMapper {
     private static final String FILTER = "sav";
     private static final Integer FILTER_PARAM = 4;
 
-    public static TimeSeriesProfile toDomain(AgroAnalysisInput input, TimeSeriesResponse response) {
+    public static TimeSeriesProfile toDomain(TimeSeriesResponse response) {
         return TimeSeriesProfile.builder()
                 .profileType(PROFILE_TYPE)
                 .satellite(SATELLITE)
                 .preFilter(PRE_FILTER)
                 .filter(FILTER)
                 .filterParam(FILTER_PARAM)
-                .timeSeriesList(response.timeSeriesList())
-                .dateList(response.dateList())
+                .timeSeriesList(equalizeListDimension(response.timeSeriesList(), 10))
+                .dateList(equalizeListDimension(response.dateList(), 10))
                 .build();
     }
 

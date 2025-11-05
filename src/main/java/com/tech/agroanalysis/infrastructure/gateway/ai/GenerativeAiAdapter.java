@@ -33,6 +33,6 @@ public class GenerativeAiAdapter implements GenerativeAiDataPort {
                 .build();
 
         Response response = aiClient.responses().create(params);
-        return GenerativeAiMapper.toDomain(response);
+        return GenerativeAiMapper.toDomain(input, response);
     }
 }

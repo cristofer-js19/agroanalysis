@@ -18,10 +18,10 @@ public class GenerativeAiMapper {
         return buildPrompt(input, timeSeriesProfile, weatherForecastProfile);
     }
 
-    public static GenerativeAiAnalysis toDomain(Response response) throws Exception {
+    public static GenerativeAiAnalysis toDomain(AgroAnalysisInput input, Response response) throws Exception {
         Optional<ResponseOutputMessage> responseMessage = response.output().getLast().message();
         if (responseMessage.isPresent()) {
-            return GenerativeAiResponseParser.parse(responseMessage.get().content().getFirst().asOutputText().text());
+            return GenerativeAiResponseParser.parse(input, responseMessage.get().content().getFirst().asOutputText().text());
         }
 
         throw new Exception("Failure when mapping AI analysis response"); //TODO: Personalize exception

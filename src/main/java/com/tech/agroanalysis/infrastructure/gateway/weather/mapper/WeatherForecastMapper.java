@@ -3,6 +3,8 @@ package com.tech.agroanalysis.infrastructure.gateway.weather.mapper;
 import com.tech.agroanalysis.domain.model.WeatherForecastProfile;
 import com.tech.agroanalysis.infrastructure.gateway.weather.dto.WeatherForecastResponse;
 
+import static com.tech.agroanalysis.infrastructure.gateway.util.ListUtil.equalizeListDimension;
+
 public class WeatherForecastMapper {
     public static WeatherForecastProfile toDomain(WeatherForecastResponse response) {
         return WeatherForecastProfile.builder()
@@ -18,9 +20,9 @@ public class WeatherForecastMapper {
                         .rainfallMeasurement(response.hourlyUnits().rainfallMeasurement())
                         .build())
                 .hourly(WeatherForecastProfile.WeatherForecastHourlyProfile.builder()
-                        .timeHistoryList(response.hourly().timeHistoryList())
-                        .temperatureHistoryList(response.hourly().temperatureHistoryList())
-                        .precipitationProbabilityHistoryList(response.hourly().precipitationProbabilityList())
+                        .timeHistoryList(equalizeListDimension(response.hourly().timeHistoryList(), 24))
+                        .temperatureHistoryList(equalizeListDimension(response.hourly().temperatureHistoryList(), 24))
+                        .precipitationProbabilityHistoryList(equalizeListDimension(response.hourly().precipitationProbabilityList(), 24))
                         .build())
                 .build();
     }
